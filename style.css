@@ -1,0 +1,94 @@
+.content {
+    margin-left: 5%;
+}
+.separator {
+    height: 1px;
+    width: 100%;
+    background-color: black;
+}
+
+.filters_value{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.courses {
+    height: 320px;
+    width: 29%;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    float: left;
+    margin-top: 15px;
+}
+
+.courses-separator {
+    height: 1px;
+    width: 100%;
+    background-color: black;
+}
+
+.courses-head {
+    height: 30%;
+}
+
+.courses-elements {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.img-content {
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.credits-content {
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.credits {
+    width: 100px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+}
+.courses-title{
+    text-align: center;
+}
+.courses-price {
+    width: 50%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.courses-start {
+    width: 50%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-information {
+    text-align: center;
+    overflow-x: auto; 
+    height: 95px;
+}
+.input-value {
+    border: 0;
+    width: 21px;
+    text-align: center;
+}

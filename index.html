@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+        <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="https://www.techtransit.com/mission.courses/coursesData.js"></script>
+        <script type="text/javascript">
+            var courses = window._courses;
+            window.onload = function() {
+                filterCourses(courses);
+            };
+
+            function showVal(value,id){
+                document.getElementById(id).value = value;
+                filterCourses();
+            }
+
+            function filterCourses(){
+                var data = courses.filter(checkFilter);
+                document.getElementById("cantcourses").value = data.length;
+                loadCourses(data);
+            }
+
+            function checkFilter(item) {
+                var credits = document.getElementById("creditsvalue").value;
+                var star = document.getElementById("starvalue").value;
+                var price = document.getElementById("pricevalue").value;
+                return item.price <= price && item.rating <= star && item.maximumCredits <= credits;
+            }
+
+            function loadCourses(data){
+                document.getElementById("content").innerHTML = "";
+                var rating = 0;
+                var star = "";
+                data.forEach((item, index)=>{
+                    rating = parseInt(item.rating| 0);
+                    star = "";                      
+
+                    for (let index = 0; index < 5; index++) {
+                        if(index<rating){
+                            star += "&#9733;";
+                        }else{
+                            star += "&#9734;";
+                        }
+                    }
+                    
+                    divcourses = document.createElement('div');
+                    divcourses.className = 'courses';
+
+                    divelements = document.createElement('div');
+                    divelements.className = 'courses-elements';
+
+                    //Create head of courses
+                    divhead = document.createElement('div');
+                    divhead.className = 'courses-head';
+
+                    divcontent = document.createElement('div');
+                    divcontent.className = 'img-content';
+                    divcontent.innerHTML = '<img height="100%" src="https://techtransit.com/mission.courses'+item.imageUrl+'">';
+                    divhead.appendChild(divcontent);
+
+                    divcontent = document.createElement('div');
+                    divcontent.className = 'credits-content';
+                    divcontent.innerHTML = ' <div class="credits">'+item.maximumCredits+' Credits</div>';
+                    divhead.appendChild(divcontent);
+                    divelements.appendChild(divhead);
+
+                    //Create separator of courses
+                    divseparator = document.createElement('div');
+                    divseparator.className = 'courses-separator';                    
+                    divelements.appendChild(divseparator);
+
+                    //Create body
+                    divbody = document.createElement('div');
+                    divbody.className = 'courses-body';
+
+                    divcontent = document.createElement('div');
+                    divcontent.className = 'courses-title';
+                    divcontent.innerHTML = '<h3>'+item.name+'</h3>';
+                    divbody.appendChild(divcontent);
+
+                    divcontent = document.createElement('div');
+                    divcontent.innerHTML = '<div class="text-information"><p>'+item.description+'</p></div>';
+                    divbody.appendChild(divcontent);
+
+                    divcontent = document.createElement('div');
+                    divcontent.className = 'courses-price';
+                    divcontent.innerHTML = '$'+item.price;
+                    divbody.appendChild(divcontent);
+
+                    divcontent = document.createElement('div');
+                    divcontent.className = 'courses-start';
+                    divcontent.innerHTML = star;
+                    divbody.appendChild(divcontent);
+                    divelements.appendChild(divbody);
+
+                    divcourses.appendChild(divelements);
+                    document.getElementById('content').appendChild(divcourses);
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div class="filter">
+            <h2 style="margin-bottom: 0px;">Courses catalog</h2><br>
+            <div class="filters_value"> 
+                Filter Credits at least <input type="text" class="input-value" value="5" id="creditsvalue"> credits <input type="range" min="1" max="100" value="5" id="rangecredits" onchange="showVal(this.value,'creditsvalue')">
+                Stars at least <input type="text" value="1" class="input-value" id="starvalue"> stars <input type="range" min="1" max="5" value="1" id="rangestar" onchange="showVal(this.value,'starvalue')">
+                Cost at least <input type="text" value="23" class="input-value" id="pricevalue"> dollars <input type="range" min="1" max="900" value="23" id="rangeprice" onchange="showVal(this.value,'pricevalue')">
+            </div>
+            <div class="separator"></div>
+            <div style="margin-left: 15px; margin-top: 15px;margin-right: 15px;">
+                Showing <input type="text" class="input-value" id="cantcourses"> of 303
+            </div>
+        </div>
+        <div class="content" id="content">
+        </div>
+    </body>
+</html>
